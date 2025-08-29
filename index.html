@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Post Workflow</title>
+</head>
+<body>
+  <h2>Post Workflow</h2>
+  <input type="text" id="postName" placeholder="Nom du post">
+  <input type="file" id="fileInput" multiple>
+  <button id="runBtn">Lancer le workflow</button>
+
+  <script>
+    const btn = document.getElementById('runBtn');
+    btn.addEventListener('click', () => {
+      const postName = document.getElementById('postName').value;
+      const files = Array.from(document.getElementById('fileInput').files).map(f => f.path);
+      window.electronAPI.runWorkflow({ files, postName });
+    });
+  </script>
+</body>
+</html>
